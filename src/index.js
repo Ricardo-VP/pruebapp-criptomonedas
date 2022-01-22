@@ -22,6 +22,12 @@ app.post("/crypto", (req, res) => {
     res.json(criptomonedas.list());
 });
 
+app.delete("/crypto/:id", (req, res) => {
+    const { id } = req.params;
+    criptomonedas._delete(id);
+    res.json(criptomonedas.list());
+})
+
 app.listen(app.get("port"), () => {
     console.log(`Server on port ${app.get("port")}`);
 });

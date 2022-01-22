@@ -16,7 +16,13 @@ const create = (nombre, usd) => {
     return criptomonedas;
 }
 
+const _delete = (id) => {
+    criptomonedas.splice(id, 1);
+    return criptomonedas;
+}
+
 module.exports = {
     list,
-    create
+    create,
+    _delete
 }

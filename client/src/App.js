@@ -17,6 +17,7 @@ import {
 import { useEffect, useState } from "react";
 import {
   crearCriptomoneda,
+  eliminarCriptomoneda,
   obtenerCriptomonedas,
 } from "./services/criptomonedas";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -35,8 +36,6 @@ function App() {
     });
   }, []);
 
-  console.log(criptomonedas);
-
   const handleClickOpenDialog = () => {
     setOpenDialog(true);
   };
@@ -46,11 +45,24 @@ function App() {
   };
 
   const handleSubmit = () => {
-    console.log(criptomoneda);
+    if (criptomoneda.nombre.trim() === "" || criptomoneda.usd.trim() === "") {
+      return;
+    }
     const response = crearCriptomoneda(criptomoneda);
     response.then((data) => {
       setCriptomonedas(data);
       setOpenDialog(false);
+    });
+    setCriptomoneda({
+      nombre: "",
+      usd: "",
+    });
+  };
+
+  const handleDelete = (id) => {
+    const response = eliminarCriptomoneda(id);
+    response.then((data) => {
+      setCriptomonedas(data);
     });
   };
 
@@ -74,7 +86,11 @@ function App() {
             <ListItem
               key={criptomoneda.id}
               secondaryAction={
-                <IconButton edge="end" aria-label="delete">
+                <IconButton
+                  onClick={ () => handleDelete(criptomoneda.id) }
+                  edge="end"
+                  aria-label="delete"
+                >
                   <DeleteIcon />
                 </IconButton>
               }

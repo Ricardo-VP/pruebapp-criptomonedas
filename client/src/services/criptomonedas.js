@@ -9,7 +9,7 @@ export async function obtenerCriptomonedas() {
   return data;
 }
 
-export async function crearCriptomoneda( criptomoneda ) {
+export async function crearCriptomoneda(criptomoneda) {
   const response = await fetch("http://localhost:4000/crypto", {
     method: "POST",
     headers: {
@@ -20,6 +20,20 @@ export async function crearCriptomoneda( criptomoneda ) {
       usd: criptomoneda.usd,
     }),
   });
+  const data = await response.json();
+  return data;
+}
+
+export async function eliminarCriptomoneda(criptomoneda) {
+  const response = await fetch(
+    "http://localhost:4000/crypto/" + criptomoneda.id,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   const data = await response.json();
   return data;
 }
