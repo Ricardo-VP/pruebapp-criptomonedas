@@ -1,9 +1,17 @@
 import "./App.css";
 import Box from "@mui/material/Box";
-import { Container, IconButton, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
+import {
+  Container,
+  IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { obtenerCriptomonedas } from "./services/criptomonedas";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function App() {
   const [criptomonedas, setCriptomonedas] = useState([]);
@@ -31,20 +39,22 @@ function App() {
         Listado de criptomonedas{" "}
       </Typography>
       <List>
-        <ListItem
-          secondaryAction={
-            <IconButton edge="end" aria-label="delete">
-              <DeleteIcon />
-            </IconButton>
-          }
-        >
-          <ListItemAvatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary="Single-line item"
-            secondary="Secondary text"
-          />
-        </ListItem>
+        {criptomonedas.map((criptomoneda) => (
+          <ListItem
+            key={criptomoneda.id}
+            secondaryAction={
+              <IconButton edge="end" aria-label="delete">
+                <DeleteIcon />
+              </IconButton>
+            }
+          >
+            <ListItemAvatar></ListItemAvatar>
+            <ListItemText
+              primary={criptomoneda.nombre}
+              secondary={"$" + criptomoneda.usd}
+            />
+          </ListItem>
+        ))}
       </List>
     </Container>
   );
