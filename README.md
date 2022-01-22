@@ -2,7 +2,7 @@
 ## Inicializar
 ### Backend (Express)
 npm start 
-### Frontend (React)
+### Frontend (React + MaterialUI)
 cd client
 
 npm start
