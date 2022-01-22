@@ -18,8 +18,8 @@ app.get("/crypto", (req, res) => {
 
 app.post("/crypto", (req, res) => {
     const { nombre, usd } = req.body;
-    const criptomoneda = criptomonedas.create(nombre, usd);
-    res.json(criptomoneda);
+    criptomonedas.create(nombre, usd);
+    res.json(criptomonedas.list());
 });
 
 app.listen(app.get("port"), () => {

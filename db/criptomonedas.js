@@ -1,8 +1,4 @@
-const criptomonedas = [{
-    id: 1,
-    nombre: "Bitcoin",
-    usd: 80000
-}]
+const criptomonedas = []
 let nextId = 0;
 
 const list = () => {
