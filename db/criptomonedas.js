@@ -1,28 +1,32 @@
-const criptomonedas = []
+const criptomonedas = [];
 let nextId = 0;
 
-const list = () => {
-    return criptomonedas;
+function list() {
+  return criptomonedas;
 }
 
-const create = (nombre, usd) => {
-    const criptomoneda = {
-        id: nextId,
-        nombre,
-        usd
-    }
-    nextId++;
-    criptomonedas.push(criptomoneda);
-    return criptomonedas;
+function create(nombre, usd) {
+  const criptomoneda = {
+    id: nextId,
+    nombre,
+    usd,
+  };
+  nextId++;
+  criptomonedas.push(criptomoneda);
+  return criptomonedas;
 }
 
-const _delete = (id) => {
-    criptomonedas.splice(id, 1);
-    return criptomonedas;
+function _delete(id) {
+  const index = criptomonedas.findIndex(
+    (criptomoneda) => criptomoneda.id == id
+  );
+  if (index >= 0) {
+    criptomonedas.splice(index, 1);
+  }
 }
 
 module.exports = {
-    list,
-    create,
-    _delete
-}
+  list,
+  create,
+  _delete,
+};

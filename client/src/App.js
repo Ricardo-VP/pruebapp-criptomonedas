@@ -59,9 +59,10 @@ function App() {
     });
   };
 
-  const handleDelete = (id) => {
-    const response = eliminarCriptomoneda(id);
+  const handleDelete = (criptomoneda) => {
+    const response = eliminarCriptomoneda(criptomoneda);
     response.then((data) => {
+      console.log(data);
       setCriptomonedas(data);
     });
   };
@@ -87,7 +88,7 @@ function App() {
               key={criptomoneda.id}
               secondaryAction={
                 <IconButton
-                  onClick={ () => handleDelete(criptomoneda.id) }
+                  onClick={() => handleDelete(criptomoneda)}
                   edge="end"
                   aria-label="delete"
                 >
