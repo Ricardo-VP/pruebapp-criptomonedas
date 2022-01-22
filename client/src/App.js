@@ -1,8 +1,21 @@
 import "./App.css";
 import Box from "@mui/material/Box";
-import { Container, Typography } from "@mui/material";
+import { Container, IconButton, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { obtenerCriptomonedas } from "./services/criptomonedas";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function App() {
+  const [criptomonedas, setCriptomonedas] = useState([]);
+
+  useEffect(() => {
+    obtenerCriptomonedas().then((data) => {
+      setCriptomonedas(data);
+    });
+  }, []);
+
+  console.log(criptomonedas);
+
   return (
     <Container
       maxWidth="sm"
@@ -17,9 +30,22 @@ function App() {
       <Typography variant="h3" sx={{ mt: 2, mb: 2 }}>
         Listado de criptomonedas{" "}
       </Typography>
-      <div className="content">
-        <Box sx={{ flexGrow: 1, maxWidth: 752 }}></Box>
-      </div>
+      <List>
+        <ListItem
+          secondaryAction={
+            <IconButton edge="end" aria-label="delete">
+              <DeleteIcon />
+            </IconButton>
+          }
+        >
+          <ListItemAvatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary="Single-line item"
+            secondary="Secondary text"
+          />
+        </ListItem>
+      </List>
     </Container>
   );
 }
